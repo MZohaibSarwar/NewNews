@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}Article{% endblock %}
+
+{% block content %}
+                    <div class="section-post">
+                    <div class="wrapper">
+                        <div class="pagetitle"><div class="h1">Post</div></div>
+                        <div class="breadcrumbs">
+                            <a href="{% url 'home' %}">Home</a> <span class="dash"></span> <a href="{% url 'blog' category='Travel' %}">Travel</a> <span class="dash"></span> <span>{{ single_news.title }}</span>
+                        </div>
+                        <div class="columns">
+                            <div class="columns_center">
+                                <article class="article">
+                                    <div class="article_cover">
+                                        <img src="{{ single_news.image.url }}" alt=""/>
+                                        <a href="{% url 'blog' single_news.category %}" class="cats_item">{{ single_news.category }}</a>
+                                    </div>
+                                    <div class="article_infoline infoline">
+                                        <div class="infoline_date">{{ single_news.date }}</div> <span class="dash"></span>
+                                        <div class="infoline_author">
+                                            <div class="ava"><img data-src="img/ava.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></div>
+                                            {{ single_news.subtitle }}
+                                        </div>
+                                    </div>
+                                    <div class="article_txt">
+                                        <h1>{{ single_news.title }}</h1>
+                                        <p class="short">{{ single_news.description }}</p>
+                                        <blockquote>
+                                            <p>“As a participatory media culture, social media platforms or social networking sites are forms of mass communication that, through media technologies, allow large amounts of product and distribution of content to reach the largest audience possible. “</p>
+                                            <cite>Ralph Edwards</cite>
+                                        </blockquote>
+                                        <h3>Pariatur cupidatat Lorem irure nisi Velit qui</h3>
+                                        <p>Pariatur cupidatat Lorem irure nisi. Velit qui irure consectetur do cupi roident id est ex sunt nostrud nisi mine consectetur do cupi roident id est ex sunt nostrud nisi minim ut. Cupidatat velit dolore consectetur deserunt laboris magna eiusmod aliquip consectetur commodo in eiusmod aliqua cupidatat. Nostrud laboris et eu mollit qui esse dolore exercitation in dolore sint nisi eu aliqua.</p>
+                                        <ol>
+                                            <li>As a participatory media culture, social media platforms or social networking sites are forms of mass communication that, through media technologies.</li>
+                                            <li>Allow large amounts of product and distribution of content to reach the largest audience possible.</li>
+                                            <li>However, there are downsides to virtual promotions as servers, systems, and websites may crash, fail, or become overloaded with information. You also can stand risk of losing uploaded information and storage and at a use can also be effected by a number of outside variables.</li>
+                                        </ol>
+                                    </div>
+                                    <div class="article_tags">
+                                        <div class="article_tags_title">Tags:</div>
+                                        <a href="{% url 'blog' category='Travel' %}">Travel</a> <span class="dash"></span> <a href="{% url 'blog' category='Holiday' %}">Holiday</a> <span class="dash"></span> <a href="{% url 'blog' category='Hobby' %}">Hobby</a>
+                                    </div>
+                                    <div class="author">
+                                        <div class="author_img"><img data-src="img/ava.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></div>
+                                        <div class="author_cont">
+                                            <div class="author_name">Marie Caphlish</div>
+                                            <div class="author_txt">Web developer since 2006. Create hundreds of websites, HTML and CSS3 expert, who started to learn web design on a <span class="nowrap">world-class</span> level. </div>
+                                        </div>
+                                    </div>
+                                </article>
+                                <div class="comments_form">
+                                    <h3>Leave a comment</h3>
+                                    <form method="post" action="{% url 'contact' %}" id="form">
+                                        {% csrf_token %}
+                                        <div class="form_cols">
+                                            <div class="form_cols_item">
+                                                <div class="form_row">
+                                                    <input type="text" class="form-control" placeholder="Your name" name="name" />
+                                                </div>
+                                            </div>
+                                            <div class="form_cols_item">
+                                                <div class="form_row">
+                                                    <input type="tel" class="form-control" placeholder="+92 (___) ___ __ __" name="tel"/>
+                                                </div>
+                                            </div>
+                                            <div class="form_cols_item">
+                                                <div class="form_row">
+                                                    <input type="email" class="form-control" placeholder="Your email" name="email2" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form_row">
+                                            <textarea class="form-control" placeholder="Enter your comment" name="comment"></textarea>
+                                        </div>
+                                        <div class="form_btn"><button type="submit" class="btn">post comment</button></div>
+                                    </form>
+                                </div>
+                                <a href="#" class="bann"><img data-src="img/bad1.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a>
+                            </div>
+                       {% comment %} Sidebar {% endcomment %}
+                            {% include 'sidebar.html' %}
+                        </div>
+                    </div>
+                </div>
+{% endblock %}

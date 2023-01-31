@@ -1,0 +1,282 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}Home{% endblock %}
+
+{% block content %}
+
+{% comment %} welcome slider {% endcomment %}
+
+             <div class="section-welcome">
+                    <div class="welcome_slider js-welcome_slider">
+                        {% for x in all_news reversed %}
+                            {% if forloop.counter < 4 %}
+                        <div class="welcome_slider_item"><a href="{% url 'article' x.id %}" class="cover_link"></a>
+                            <div class="welcome_slider_img"><img src="media/{{ x.image }}" alt=""/></div>
+                            <div class="welcome_slider_cont">
+                                <div class="welcome_slider_cats cats">
+                                    <a href="{% url 'blog' x.category %}" class="cats_item">{{ x.category }}</a>
+                                </div>
+                                <div class="welcome_slider_title h3"><a href="{% url 'article' x.id %}">{{ x.title }}</a></div>
+                                <div class="welcome_slider_infoline infoline">
+                                    <div class="infoline_date">{{ x.date }}</div> <span class="dash"></span>
+                                    <div class="infoline_author">
+                                        <div class="ava"><img data-src="img/ava6.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></div>
+                                        {{ x.tag }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+{% comment %} Top stories {% endcomment %}
+
+            <section class="section-stories">
+                <div class="wrapper">
+                    <a href="{% url 'home' %}" class="bann"><img src="{% static 'assets/img/brkingnews.png' %}" alt=""/></a>
+                    <div id="recent" class="recent_wrap">
+                        <div class="section_title">
+                            <h2>Recent stories</h2>
+                        </div>
+                        <div class="columns">
+                            <div class="columns_center">
+                                <div class="recent">
+                                    {% for x in recent_news reversed %}
+                                        {% if forloop.counter < 4 %}
+                                    <div class="recent_item">
+                                        <div class="recent_item_img">
+                                            <a href="{% url 'article' x.id %}"><img data-src="media/{{ x.image }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a>
+                                            <div class="recent_item_cats cats"><a href="{% url 'blog' x.category %}" class="cats_item">{{ x.category }}</a></div>
+                                        </div>
+                                        <div class="recent_item_cont">
+                                            <div class="recent_item_title h3"><a href="{% url 'article' x.id %}">{{ x.title }}</a></div>
+                                            <div class="recent_item_txt">{{ x.subtitle }}</div>
+                                            <div class="recent_item_infoline infoline">
+                                                <div class="infoline_date">{{ x.date }}</div> <span class="dash"></span>
+                                                <div class="infoline_author">
+                                                    <div class="ava"><img data-src="img/ava7.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></div>
+                                                    {{ x.tag }}
+                                                </div>
+                                                <a href="{% url 'article' x.id %}" class="btn-arr"><span class="icon-arrow"></span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <aside class="columns_sidebar sidebar">
+                                <div class="sidebar_widget">
+                                    <div class="stories">
+                                        {% for x in recent_news %}
+                                            {% if forloop.counter < 4 %}
+                                        <div class="stories_item">
+                                            <div class="stories_item_img"><a href="{% url 'article' x.id %}"><img data-src="media/{{ x.image }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a></div>
+                                            <div class="stories_infoline infoline">
+                                                <div class="infoline_date">{{ x.date }}</div> <span class="dash"></span>
+                                                <div class="infoline_tag">{{ x.category }}</div>
+                                            </div>
+                                            <div class="stories_item_title"><a href="{% url 'article' x.id %}">{{ x.title }}</a></div>
+                                        </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="stories_btn"><a href="{% url 'blog2' %}" class="btn">view all</a></div>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+{% comment %} Popular news {% endcomment %}
+
+            <section class="section-popular" id="popular">
+                <div class="wrapper">
+                    <div class="section_title">
+                        <h2>Popular posts</h2>
+                        <a href="{% url 'blog2' %}" class="link-view">View all posts <span class="icon-arr"></span></a>
+                    </div>
+                    <div class="columns columns-invers">
+                        <div class="columns_center">
+                            <div class="popular_main">
+                                {% for x in popular_news reversed %}
+                                    {% if forloop.counter < 2 %}
+                                <div class="popular_main_img"><a href="{% url 'article' x.id %}"><img data-src="media/{{ x.image }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a></div>
+                                <div class="popular_main_cont">
+                                    <div class="popular_main_infoline infoline">
+                                        <div class="infoline_date">{{ x.date }}</div> <span class="dash"></span>
+                                        <div class="infoline_tag">{{ x.category }}</div>
+                                    </div>
+                                    <div class="popular_main_title h3"><a href="{% url 'article' x.id %}">{{ x.title }}</a></div>
+                                    <div class="popular_main_txt">{{ x.subtitle }}</div>
+                                    <a href="{% url 'article' x.id %}" class="link-view">Read more <span class="icon-arr"></span></a>
+                                </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <aside class="columns_sidebar sidebar">
+                            <div class="sidebar_widget">
+                                <div class="popular">
+                                    {% for x in popular_news %}
+                                        {% if forloop.counter < 5 %}
+                                    <div class="popular_item">
+                                        <div class="popular_item_img"><a href="{% url 'article' x.id %}"><img data-src="media/{{ x.image }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a></div>
+                                        <div class="popular_item_cont">
+                                            <div class="popular_item_title"><a href="{% url 'article' x.id %}">{{ x.title }}</a></div>
+                                            <div class="popular_item_infoline infoline">
+                                                <div class="infoline_date">{{ x.date }}</div> <span class="dash"></span>
+                                                <div class="infoline_tag">{{ x.category }}</div> <span class="dash"></span>
+                                                <div class="infoline_tag"><span class="icon-comm"></span>5</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                         {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+
+{% comment %} Most Read {% endcomment %}
+
+            <section class="section-readed">
+                <div class="wrapper">
+                    <a href="#" class="bann"><img data-src="{% static 'assets/img/online-marketing.jpg' %}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a>
+                    <div class="columns" id="mostreaded">
+                        <div class="columns_center">
+                            <div class="section_title">
+                                <h2>Most read posts</h2>
+                                <a href="{% url 'blog2' %}" class="link-view">View all posts <span class="icon-arr"></span></a>
+                            </div>
+                            <div class="readed">
+                                {% for x in most_read_news %}
+                                    {% if forloop.counter < 5 %}
+                                <div class="readed_item">
+                                    <div class="readed_item_img">
+                                        <a href="{% url 'article' x.id %}"><img data-src="media/{{ x.image }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a>
+                                        <div class="readed_item_cats cats">
+                                            <a href="{% url 'blog' x.category %}" class="cats_item">{{ x.category }}</a>
+                                        </div>
+                                    </div>
+                                    <div class="readed_item_cont">
+                                        <div class="readed_item_title"><a href="{% url 'article' x.id %}">{{ x.title }}</a></div>
+                                       <div class="readed_item_infoline infoline">
+                                            <div class="infoline_date">{{ x.date }}</div> <span class="dash"></span>
+                                            <div class="infoline_author">
+                                                <div class="ava"><img data-src="img/ava7.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></div>
+                                                {{ x.tag }}
+                                            </div>
+                                            <a href="{% url 'article' x.id %}" class="btn-arr"><span class="icon-arrow"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <aside class="columns_sidebar sidebar">
+                            <div class="section_title">
+                                <h2>Categories</h2>
+                            </div>
+                            <div class="sidebar_widget">
+                                <ul class="catlist">
+                                    <li><a href="{% url 'blog' category='Home-&-Garden' %}">Home&garden <span>(15)</span></a></li>
+                                    <li><a href="{% url 'blog' category='Travel' %}">Travel <span>(23)</span></a></li>
+                                    <li><a href="{% url 'blog' category='Electronics' %}">Electronics <span>(34)</span></a></li>
+                                    <li><a href="{% url 'blog' category='Office' %}">Office <span>(5)</span></a></li>
+                                    <li><a href="{% url 'blog' category='Cars' %}">Cars <span>(51)</span></a></li>
+                                    <li><a href="{% url 'blog' category='Pets' %}">Pets <span>(8)</span></a></li>
+                                    <li><a href="{% url 'blog' category='Fashion' %}">Fashion <span>(29)</span></a></li>
+                                </ul>
+                            </div>
+                            <a href="#" class="bann"><img data-src="{% static 'assets/img/social-media-image.png' %}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a>
+                        </aside>
+                    </div>
+                </div>
+            </section>
+
+{% comment %} Subscribe us {% endcomment %}
+
+            <section class="section-subsc">
+                <div class="wrapper">
+                    <form action="{% url 'subscribe' %}" method="post">
+                        {% csrf_token %}
+                        <div class="subsc">
+                            <h3>Stay up to date!<br/>Subscribe!</h3>
+                            <input name="email" type="text" class="form-control" placeholder="Your email"/>
+                            <button type="submit" class="btn">subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+{% comment %} Hot Stuff {% endcomment %}
+
+            <section class="section-hot" id="hot">
+                <div class="wrapper">
+                    <div class="section_title">
+                        <h2>Hot stuff</h2>
+                    </div>
+                    {% for x in hot_stuff_news %}
+                        {% if forloop.counter < 2 %}
+                    <div class="hot">
+                        <div class="hot_img"><a href="{% url 'article' x.id %}"><img data-src="media/{{ x.image }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a></div>
+                        <div class="hot_cont">
+                            <div class="hot_cats cats">
+                                <a href="{% url 'blog' x.category %}" class="cats_item">{{ x.category }}</a>
+                            </div>
+                            <h2 class="hot_title"><a href="{% url 'article' x.id %}">{{ x.title }}</a></h2>
+                            <div class="hot_txt">{{ x.subtitle }}</div>
+                            <div class="hot_infoline infoline">
+                                <div class="infoline_date">{{ x.date }}</div> <span class="dash"></span>
+                                <div class="infoline_author">
+                                    <div class="ava"><img data-src="img/ava5.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></div>
+                                    {{ x.tag }}
+                                </div>
+                            </div>
+                            <a href="{% url 'article' x.id %}" class="link-view">Read more <span class="icon-arr"></span></a>
+                        </div>
+                    </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </section>
+
+{% comment %} Top of the week {% endcomment %}
+
+            <section class="section-topof" id="top">
+                <div class="wrapper">
+                    <div class="section_title">
+                        <h2>top of the week</h2>
+                        <a href="{% url 'blog2' %}" class="link-view">View all posts <span class="icon-arr"></span></a>
+                    </div>
+                    <div class="topof">
+                        {% for x in all_news %}
+                            {% if forloop.counter < 4 %}
+                        <div class="topof_item">
+                            <div class="topof_item_img"><a href="{% url 'article' x.id %}"><img data-src="media/{{ x.image }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a></div>
+                            <div class="topof_cats cats">
+                                <a href="{% url 'blog' x.category %}" class="cats_item">{{ x.category }}</a>
+                            </div>
+                            <div class="topof_item_title"><a href="{% url 'article' x.id %}">{{ x.title }}</a></div>
+                            <div class="topof_item_infoline infoline">
+                                <div class="infoline_date">{{ x.date }}</div> <span class="dash"></span>
+                                <div class="infoline_author">
+                                    <div class="ava"><img data-src="img/ava2.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></div>
+                                    {{ x.tag }}
+                                </div>
+                            </div>
+                            <a href="{% url 'article' x.id %}" class="link-view">Read more <span class="icon-arr"></span></a>
+                        </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+{% endblock %}

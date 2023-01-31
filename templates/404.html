@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block page_title %}Error{% endblock %}
+{% block content %}
+ <section class="section-errorpage">
+    <div class="wrapper">
+        <div class="pagetitle"><h1>Oops!</h1></div>
+        <div class="breadcrumbs">
+            <a href="#">Home</a> <span class="dash"></span> <span>404</span>
+        </div>
+        <div class="errorpage">
+            <div class="errorpage_big">404</div>
+            <div class="errorpage_cont">
+                <div class="errorpage_title">Page not found</div>
+                <div class="errorpage_txt">It looks like nothing was found at this location. Maybe try a search?</div>
+            </div>
+            <div class="errorpage_search">
+                <form>
+                    <div class="search">
+                        <input type="text" class="form-control" placeholder="Search..."/>
+                        <button class="btn"><span class="icon-search"></span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+ </section>
+
+{% endblock %}

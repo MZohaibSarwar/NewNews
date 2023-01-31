@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_title %}Blog{% endblock %}
+
+{% block content %}
+
+                <section class="section-post">
+                    <div class="wrapper">
+                        <div class="pagetitle"><h1>Blog</h1></div>
+                        <div class="breadcrumbs">
+                            <a href="{% url 'home' %}">Home</a> <span class="dash"></span> <span>{{ news1.category }}</span>
+                        </div>
+                        <div class="columns">
+                            <div class="columns_center">
+                                <div class="article article_list">
+                                    {% for x in news1 %}
+                                        {% if forloop.counter < 4 %}
+                                    <div class="article_item">
+                                        <div class="article_item_cover">
+                                            <a href="{% url 'article' x.id %}"><img src="{{ x.image.url }}" alt=""/></a>
+                                            <a href="{% url 'blog' x.category %}" class="cats_item">{{ x.category }}</a>
+                                        </div>
+                                        <div class="article_infoline infoline">
+                                            <div class="infoline_date">{{ x.date }}</div> <span class="dash"></span>
+                                            <div class="infoline_author">
+                                                <div class="ava"><img data-src="img/ava.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></div>
+                                                {{ x.tag }}
+                                            </div>
+                                        </div>
+                                        <div class="article_txt">
+                                            <div class="article_title h2"><a href="{% url 'article' x.id %}">{{ x.title }}</a></div>
+                                            <div class="article_desc">{{ x.subtitle }}</div>
+                                            <div class="article_btn"><a href="{% url 'article' x.id %}" class="btn">read more</a></div>
+                                        </div>
+                                    </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+
+                                <div class="pagenavi">
+                                    <span class="current">1</span>
+                                    <a href="#">2</a>
+                                    <a href="#"><span class="icon-arrow"></span></a>
+                                </div>
+                                <a href="#" class="bann"><img data-src="img/bad1.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a>
+                            </div>
+                        {% comment %} Sidebar {% endcomment %}
+                            {% include 'sidebar.html' %}
+                        </div>
+                    </div>
+                </section>   
+{% endblock %}

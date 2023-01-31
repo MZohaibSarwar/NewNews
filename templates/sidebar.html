@@ -1,0 +1,101 @@
+                       {% comment %} Sidebar {% endcomment %}
+<aside class="columns_sidebar sidebar">
+<div class="sidebar_search">
+    <form>
+        <div class="search">
+            <input type="text" class="form-control" placeholder="Search..."/>
+            <button class="btn"><span class="icon-search"></span></button>
+        </div>
+    </form>
+</div>
+<div class="sidebar_widget">
+    <h3>Recent stories</h3>
+    <div class="stories">
+        {% for x in news2 reversed %}
+            {% if forloop.counter < 3 %}
+                <div class="stories_item">
+                    <div class="stories_item_img"><a href="{% url 'article' x.id %}"><img data-src="../media/{{ x.image}}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a></div>
+                    <div class="stories_item_infoline infoline">
+                        <div class="infoline_date">{{ x.date }}</div> <span class="dash"></span>
+                        <div class="infoline_tag">{{ x.category }}</div>
+                    </div>
+                    <div class="stories_item_title"><a href="{% url 'article' x.id %}">{{ x.title }}</a></div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<div class="sidebar_widget">
+    <h3>Categories</h3>
+    <div class="cats">
+        <a class="cats_item" href="{% url 'blog' category='Home' %}">Home</a>
+        <a class="cats_item" href="{% url 'blog' category='Kitchen' %}">Kitchen</a>
+        <a class="cats_item" href="{% url 'blog' category='Cars' %}">Cars</a>
+        <a class="cats_item" href="{% url 'blog' category='Travel' %}">Travel</a>
+        <a class="cats_item" href="{% url 'blog' category='Pets' %}">Pets</a>
+        <a class="cats_item" href="{% url 'blog' category='Office' %}">Office</a>
+        <a class="cats_item" href="{% url 'blog' category='Electronics' %}">Electronics</a>
+        <a class="cats_item" href="{% url 'blog' category='Hobby' %}">Hobby</a>
+        <a class="cats_item" href="{% url 'blog' category='Baby' %}">Baby</a>
+        <a class="cats_item" href="{% url 'blog' category='Holiday' %}">Holiday</a>
+        <a class="cats_item" href="{% url 'blog' category='Software' %}">Software</a>
+        <a class="cats_item" href="{% url 'blog' category='Health' %}">Health</a>
+        <a class="cats_item" href="{% url 'blog' category='Appliences' %}">Appliences</a>
+        <a class="cats_item" href="{% url 'blog' category='Money' %}">Money</a>
+        <a class="cats_item" href="{% url 'blog' category='Garden' %}">Garden</a>
+        <a class="cats_item" href="{% url 'blog' category='Home-&-Garden' %}">Home & Garden</a>
+        <a class="cats_item" href="{% url 'blog' category='Fashion' %}">Fashion</a>
+        <a class="cats_item" href="{% url 'blog' category='Books' %}">Books</a>
+    </div>
+</div>
+<a href="#" class="bann"><img data-src="img/bad2.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a>
+<div class="sidebar_widget">
+    <h3>Follow us</h3>
+    <div class="soc">
+        <div class="soc_item">
+            <a href="#" target="_blank">
+                <span class="soc_item_icon"><span class="icon-fb"></span></span>
+                <span class="soc_item_txt">2,1 k+</span>
+            </a>
+        </div>
+        <div class="soc_item">
+            <a href="#" target="_blank">
+                <span class="soc_item_icon"><span class="icon-tw"></span></span>
+                <span class="soc_item_txt">3,6 k+</span>
+            </a>
+        </div>
+        <div class="soc_item">
+            <a href="#" target="_blank">
+                <span class="soc_item_icon"><span class="icon-youtube"></span></span>
+                <span class="soc_item_txt">2,8 k+</span>
+            </a>
+        </div>
+        <div class="soc_item">
+            <a href="#" target="_blank">
+                <span class="soc_item_icon"><span class="icon-instagram"></span></span>
+                <span class="soc_item_txt">6,3 k+</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="sidebar_widget">
+    <h3>Popular posts</h3>
+    <div class="popular">
+        {% for x in popular_news reversed %}
+            {% if forloop.counter < 4 %}
+                <div class="popular_item">
+                    <div class="popular_item_img"><a href="{% url 'article' x.id %}"><img data-src="../media/{{ x.image }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a></div>
+                    <div class="popular_item_cont">
+                        <div class="popular_item_title"><a href="{% url 'article' x.id %}">the best indoor plants to create comfort ...</a></div>
+                        <div class="popular_item_infoline infoline">
+                            <div class="infoline_date">{{ x.date }}</div> <span class="dash"></span>
+                            <div class="infoline_tag"><span class="icon-comm"></span>5</div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+</aside>
