@@ -10,4 +10,5 @@ urlpatterns = [
     path('article/<int:id>', views.article, name='article'),
     path('subscribe/', views.SubscribeView, name='subscribe'),
     path('contact/', views.ContactView, name='contact'),
+    path('search/', views.search, name='search'),
 ]

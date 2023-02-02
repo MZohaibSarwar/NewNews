@@ -2,6 +2,7 @@
 {% load static %}
 {% block page_title %}Article{% endblock %}
 
+
 {% block content %}
                     <div class="section-post">
                     <div class="wrapper">
@@ -43,7 +44,7 @@
                                         <a href="{% url 'blog' category='Travel' %}">Travel</a> <span class="dash"></span> <a href="{% url 'blog' category='Holiday' %}">Holiday</a> <span class="dash"></span> <a href="{% url 'blog' category='Hobby' %}">Hobby</a>
                                     </div>
                                     <div class="author">
-                                        <div class="author_img"><img data-src="img/ava.png" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></div>
+                                        <div class="author_img"><img data-src="{% static 'assets/img/IMG_4937.jpg' %}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></div>
                                         <div class="author_cont">
                                             <div class="author_name">Marie Caphlish</div>
                                             <div class="author_txt">Web developer since 2006. Create hundreds of websites, HTML and CSS3 expert, who started to learn web design on a <span class="nowrap">world-class</span> level. </div>
@@ -76,8 +77,25 @@
                                         </div>
                                         <div class="form_btn"><button type="submit" class="btn">post comment</button></div>
                                     </form>
+                                    <div style="margin-top: 50px" class="recent_comment">
+                                       <h3>Recent Comments</h3>
+                                      {% for x in all_comment reversed %}
+                                        {% if forloop.counter < 4 %}
+                                      <div class="comment_item">
+                                         <div class="row" style="margin: 20px 10px 50px; border-bottom: solid #d1d1d1 1px">
+                                         <div class="col-sm-2 name"><p style="font-weight: bold">{{ x.name }}</p></div>
+                                         <div class="col-sm-10 date"><p>"{{ x.comment }}"</p></div>
+                                         </div>
+                                      </div>
+                                         {% endif %}
+                                      {% endfor %}
+                                    </div>
+
                                 </div>
-                                <a href="#" class="bann"><img data-src="img/bad1.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a>
+
+
+
+                                <a href="#" class="bann"><img data-src="{% static 'assets/img/online-marketing.jpg' %}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a>
                             </div>
                        {% comment %} Sidebar {% endcomment %}
                             {% include 'sidebar.html' %}

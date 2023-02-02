@@ -1,9 +1,10 @@
+ {% load static %}
                        {% comment %} Sidebar {% endcomment %}
 <aside class="columns_sidebar sidebar">
 <div class="sidebar_search">
-    <form>
+    <form method="get" action="{% url 'search' %}">
         <div class="search">
-            <input type="text" class="form-control" placeholder="Search..."/>
+            <input name="query" id="query" type="text" class="form-control" placeholder="Search..."/>
             <button class="btn"><span class="icon-search"></span></button>
         </div>
     </form>
@@ -48,7 +49,7 @@
         <a class="cats_item" href="{% url 'blog' category='Books' %}">Books</a>
     </div>
 </div>
-<a href="#" class="bann"><img data-src="img/bad2.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a>
+<a href="{% url 'blog2' %}" class="bann"><img data-src="{% static 'assets/img/social-media-image.png' %}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a>
 <div class="sidebar_widget">
     <h3>Follow us</h3>
     <div class="soc">
@@ -86,7 +87,7 @@
                 <div class="popular_item">
                     <div class="popular_item_img"><a href="{% url 'article' x.id %}"><img data-src="../media/{{ x.image }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" class="js-img" alt=""/></a></div>
                     <div class="popular_item_cont">
-                        <div class="popular_item_title"><a href="{% url 'article' x.id %}">the best indoor plants to create comfort ...</a></div>
+                        <div class="popular_item_title"><a href="{% url 'article' x.id %}">{{ x.title }}</a></div>
                         <div class="popular_item_infoline infoline">
                             <div class="infoline_date">{{ x.date }}</div> <span class="dash"></span>
                             <div class="infoline_tag"><span class="icon-comm"></span>5</div>

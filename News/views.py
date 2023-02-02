@@ -43,7 +43,7 @@ def blog2(request):
     popular_news = News.objects.filter(tag='Popular')
     template = loader.get_template('blog2.html')
     context = {
-        'total_page_list': [n+1 for n in range(totalpage)],
+        'total_page_list': [n + 1 for n in range(totalpage)],
         'news3': news3,
         'news2': news2,
         'popular_news': popular_news,
@@ -54,12 +54,14 @@ def blog2(request):
 def article(request, id):
     single_news = News.objects.get(id=id)
     news2 = News.objects.all().values()
+    all_comment = Contact.objects.all().values()
     popular_news = News.objects.filter(tag='Popular')
     template = loader.get_template('article.html')
     context = {
         'single_news': single_news,
         'news2': news2,
         'popular_news': popular_news,
+        'all_comment': all_comment,
     }
     return HttpResponse(template.render(context, request))
 
@@ -96,9 +98,26 @@ def ContactView(request):
         return HttpResponse('Thanks for contact us!!!')
 
     mymember3 = News.objects.get(id=5)
+
     template = loader.get_template('thanks.html')
     context = {
         'mymember3': mymember3,
+
     }
 
+    return HttpResponse(template.render(context, request))
+
+
+def search(request):
+    query = request.GET['query']
+    news3 = News.objects.filter(title__icontains=query)
+    # params = {'news3': news3}
+    popular_news = News.objects.filter(tag='Popular')
+    news2 = News.objects.all().values()
+    template = loader.get_template('search.html')
+    context = {
+        'news2': news2,
+        'popular_news': popular_news,
+        'news3': news3,
+    }
     return HttpResponse(template.render(context, request))
